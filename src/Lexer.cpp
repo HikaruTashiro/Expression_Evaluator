@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <utility>
+#include <cmath>
 
 
 #ifdef DEBUG_LEXER
@@ -20,9 +21,12 @@ Lexer::Lexer(std::string& expression)
     words = {{"+",new Token("+", '+')},
              {"-",new Token("-", '-')},
              {"*",new Token("*", '*')},
+             {"^",new Token("^", '^')},
              {"/",new Token("/", '/')},
              {"(",new Token("(", '(')},
              {")",new Token(")", ')')},
+             {"e",new Number("e", CONST, M_E)},
+             {"pi",new Number("pi", CONST, M_PI)},
              {"sin",new UnaryFunc("sin", ELEM_UN_FN, std::sin)},
              {"cos",new UnaryFunc("cos", ELEM_UN_FN, std::cos)},
              {"tan",new UnaryFunc("tan", ELEM_UN_FN, std::tan)},
@@ -78,6 +82,9 @@ Token* Lexer::getToken(std::string::iterator& pos)
         case '+':
             pos++;
             return words.find("+")->second;
+        case '^':
+            pos++;
+            return words.find("^")->second;
         case '/':
             pos++;
             return words.find("/")->second;

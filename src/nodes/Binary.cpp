@@ -3,6 +3,7 @@
 #ifdef DEBUG_NODE
 #include <iostream>
 #endif
+#include <cmath>
 
 Binary::Binary(std::shared_ptr<Expr> expr1, Token* op, std::shared_ptr<Expr> expr2) : expression1(expr1), expression2(expr2)
 {
@@ -34,6 +35,12 @@ double Binary::eval()
             return var;
         case '/':
             var = expression1->eval() / expression2->eval();
+#ifdef DEBUG_NODE
+            std::cout << "Binary : " << var << '\n';
+#endif
+            return var;
+        case '^':
+            var = std::pow(expression1->eval(), expression2->eval());
 #ifdef DEBUG_NODE
             std::cout << "Binary : " << var << '\n';
 #endif

@@ -17,6 +17,7 @@ class Parser
         std::shared_ptr<Expr> expr();
         std::shared_ptr<Expr> term();
         std::shared_ptr<Expr> unary();
+        std::shared_ptr<Expr> pow();
         std::shared_ptr<Expr> factor();
         inline void move() {iter++;}
 
@@ -38,7 +39,7 @@ class Parser
  * <unary> -> '-' <unary>
  *          | <pow>
  *
- * <pow> -> <factor> '^' <up>
+ * <pow> -> <factor> '^' <pow>
  *       |  <factor>
  *
  * <factor> ->  <const>

@@ -69,7 +69,21 @@ std::shared_ptr<Expr> Parser::unary()
         move();
         return std::shared_ptr<Unary>(new Unary(*iter, unary()));
     }
-    return factor();
+    return pow();
+}
+
+std::shared_ptr<Expr> Parser::pow()
+{
+#ifdef DEBUG_PARSER
+    std::cout << "pow -> " << **iter << '\n';
+#endif
+    auto expr = factor(); 
+    if((*iter)->getTag() == '^')
+    {
+        Token* tok = *iter; move();
+        expr = std::shared_ptr<Binary>(new Binary(expr, tok, pow()));
+    }
+    return expr;
 }
 
 std::shared_ptr<Expr> Parser::factor()
