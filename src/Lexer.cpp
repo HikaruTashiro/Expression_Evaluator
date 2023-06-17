@@ -25,15 +25,19 @@ Lexer::Lexer(std::string& expression)
              {"/",new Token("/", '/')},
              {"(",new Token("(", '(')},
              {")",new Token(")", ')')},
+             {",",new Token(",", ',')},
              {"e",new Number("e", CONST, M_E)},
              {"pi",new Number("pi", CONST, M_PI)},
              {"sin",new UnaryFunc("sin", ELEM_UN_FN, std::sin)},
              {"cos",new UnaryFunc("cos", ELEM_UN_FN, std::cos)},
              {"tan",new UnaryFunc("tan", ELEM_UN_FN, std::tan)},
-             {"atan",new UnaryFunc("atan", ELEM_UN_FN, std::atan)},
+             {"arctan",new UnaryFunc("arctan", ELEM_UN_FN, std::atan)},
+             {"arcsin",new UnaryFunc("arcsin", ELEM_UN_FN, std::sin)},
+             {"arccos",new UnaryFunc("arccos", ELEM_UN_FN, std::cos)},
              {"sqrt",new UnaryFunc("sqrt", ELEM_UN_FN, std::sqrt)},
              {"ln",new UnaryFunc("ln", ELEM_UN_FN, std::log)},
              {"log2",new UnaryFunc("log2", ELEM_UN_FN, std::log2)},
+             {"log10",new UnaryFunc("log10", ELEM_UN_FN, std::log10)},
              {"exp",new UnaryFunc("exp", ELEM_UN_FN, std::exp)},
              {"pow",new BinaryFunc("pow", ELEM_BIN_FN, std::pow)},
              {"x",new Number("x", X_VALUE, 0.0)}
@@ -94,6 +98,9 @@ Token* Lexer::getToken(std::string::iterator& pos)
         case '(':
             pos++;
             return words.find("(")->second;
+        case ',':
+            pos++;
+            return words.find(",")->second;
     }
 
     if (std::isdigit(*pos))

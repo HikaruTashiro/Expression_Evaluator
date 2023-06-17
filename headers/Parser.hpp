@@ -37,7 +37,7 @@ class Parser
  *        |  <unary>
  *
  * <unary> -> '-' <unary>
- *          | <pow>
+ *         |  <pow>
  *
  * <pow> -> <factor> '^' <pow>
  *       |  <factor>
@@ -53,5 +53,13 @@ class Parser
  *          |   <ln> '(' <expr> ')'
  *          |   <atan> '(' <expr> ')'
  *          |   <exp> '(' <expr> ')'
- *          |   <pow> '(' <expr> ')'
+ *          |   <pow> '(' <expr>  ',' <expr> ')'
+ * */
+
+/*
+ * f(x) ^ g(x) -> f(x)^g(x)*[g'(x)*ln(f(x)) + g(x)*f'(x)/f(x)]
+ * f(x) + g(x) -> f'(x) + g'(x)
+ * f(x) - g(x) -> f'(x) - g'(x)
+ * f(x) * g(x) -> f'(x)*g(x) - f(x)*g'(x)
+ * f(x) / g(x) -> [f'(x)*g(x)-f(x)*g'(x)]/f(x)*g(x)
  * */

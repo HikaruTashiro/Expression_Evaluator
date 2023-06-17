@@ -17,3 +17,13 @@ double Const::eval()
 #endif
     return var;
 }
+
+std::string Const::derivative()
+{
+    return "0"; 
+}
+
+std::string Const::get_expr()
+{
+    return tok->getLexeme();
+}

@@ -7,4 +7,6 @@ class Unary : public Expr
         std::shared_ptr<Expr> expression;
         explicit Unary(Token* op, std::shared_ptr<Expr> expr);
         double eval() override;
+        std::string derivative() override;
+        std::string get_expr() override;
 };

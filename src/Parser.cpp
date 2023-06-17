@@ -114,9 +114,10 @@ std::shared_ptr<Expr> Parser::factor()
             return expression;
         case ELEM_BIN_FN:
             {
-                Token* tok = *iter; move();
-                std::shared_ptr<Expr> expr1 = expr();   // Still needs to add comma for something like pow(x,3)
+                Token* tok = *iter; move(); match('(');
+                std::shared_ptr<Expr> expr1 = expr(); match(',');
                 expression = std::shared_ptr<Func>(new Func(tok, expr1, expr()));
+                match(')');
             }
             return expression;
         default:

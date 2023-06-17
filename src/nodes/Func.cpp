@@ -35,3 +35,15 @@ double Func::eval()
     else
         return 0.0;
 }
+
+std::string Func::derivative()
+{
+    /*STUBS*/
+    return "";
+}
+
+std::string Func::get_expr()
+{
+    /*STUBS*/
+    return "";
+}

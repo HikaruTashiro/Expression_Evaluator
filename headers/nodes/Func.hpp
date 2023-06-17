@@ -7,4 +7,6 @@ class Func : public Expr
         std::shared_ptr<Expr> expression1, expression2;
         explicit Func(Token* op, std::shared_ptr<Expr> expr1, std::shared_ptr<Expr> expr2);
         double eval() override;
+        std::string derivative() override;
+        std::string get_expr() override;
 };

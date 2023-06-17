@@ -26,3 +26,15 @@ double Unary::eval()
 #endif
     return var;
 }
+
+std::string Unary::derivative()
+{
+    /*STUBS*/
+    return "";
+} 
+
+std::string Unary::get_expr()
+{
+    /*STUBS*/
+    return "";
+}
